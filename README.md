@@ -17,19 +17,22 @@
 
 <p align="center">
   📚 <b>文档：</b>
-  <a href="https://www.jsesm.com">简体中文</a> | 
-  <a href="https://www.jsesm.com/en/">English</a> | 
-  <a href="https://www.jsesm.com/es/">Español</a> | 
-  <a href="https://www.jsesm.com/ja/">日本語</a> | 
-  <a href="https://www.jsesm.com/fr/">Français</a> | 
-  <a href="https://www.jsesm.com/pt/">Português</a> | 
-  <a href="https://www.jsesm.com/ru/">Русский</a> | 
-  <a href="https://www.jsesm.com/ko/">한국어</a> | 
-  <a href="https://www.jsesm.com/zh-TW/">繁體中文</a> | 
-  <a href="https://www.jsesm.com/de/">Deutsch</a> | 
-  <a href="https://www.jsesm.com/it/">Italiano</a> | 
-  <a href="https://www.jsesm.com/hi/">हिन्दी</a> | 
-  <a href="https://www.jsesm.com/tr/">Türkçe</a> | 
+  <a href="https://www.jsesm.com">简体中文</a>|
+  <a href="https://www.jsesm.com/en/">English</a>|
+  <a href="https://www.jsesm.com/es/">Español</a>|
+  <a href="https://www.jsesm.com/hi/">हिन्दी</a>|
+  <a href="https://www.jsesm.com/pt/">Português</a>|
+  <a href="https://www.jsesm.com/ru/">Русский</a>|
+  <a href="https://www.jsesm.com/ja/">日本語</a>|
+  <a href="https://www.jsesm.com/de/">Deutsch</a>|
+  <a href="https://www.jsesm.com/fr/">Français</a>|
+  <a href="https://www.jsesm.com/zh-TW/">繁体中文</a>|
+  <a href="https://www.jsesm.com/it/">Italiano</a>|
+  <a href="https://www.jsesm.com/ko/">한국어</a>|
+  <a href="https://www.jsesm.com/nl/">Nederlands</a>|
+  <a href="https://www.jsesm.com/pl/">Polski</a>|
+  <a href="https://www.jsesm.com/tr/">Türkçe</a>|
+  <a href="https://www.jsesm.com/th/">ไทย</a>|
   <a href="https://www.jsesm.com/vi/">Tiếng Việt</a>
 </p>
 
