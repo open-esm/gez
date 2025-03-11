@@ -26,7 +26,7 @@
   <a href="https://www.jsesm.com/ja/">日本語</a>|
   <a href="https://www.jsesm.com/de/">Deutsch</a>|
   <a href="https://www.jsesm.com/fr/">Français</a>|
-  <a href="https://www.jsesm.com/zh-TW/">繁体中文</a>|
+  <a href="https://www.jsesm.com/zh-TW/">繁體中文</a>|
   <a href="https://www.jsesm.com/it/">Italiano</a>|
   <a href="https://www.jsesm.com/ko/">한국어</a>|
   <a href="https://www.jsesm.com/nl/">Nederlands</a>|

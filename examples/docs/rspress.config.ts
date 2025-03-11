@@ -58,7 +58,7 @@ export default defineConfig({
         },
         {
             lang: 'zh-TW',
-            label: '繁体中文',
+            label: '繁體中文',
             title: 'Gez'
         },
         {
