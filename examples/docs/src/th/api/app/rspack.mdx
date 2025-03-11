@@ -1,0 +1,171 @@
+---
+titleSuffix: Gez Framework Rspack Build Tool
+description: Rspack build tool ของ Gez framework ให้ความสามารถในการสร้างแอปพลิเคชันที่มีประสิทธิภาพสูง รองรับการพัฒนาและสร้างแอปพลิเคชันมาตรฐานและแอปพลิเคชัน HTML พร้อมด้วยตัวประมวลผลทรัพยากรและการปรับแต่งการเพิ่มประสิทธิภาพที่หลากหลาย
+head:
+  - - meta
+    - property: keywords
+      content: Gez, Rspack, Build Tool, Application Build, HTML Application, TypeScript, CSS, Resource Processing, Performance Optimization
+---
+
+import { PackageManagerTabs } from '@theme';
+
+# @gez/rspack
+
+แพ็คเกจ Rspack ให้ชุด API สำหรับการสร้างและกำหนดค่าแอปพลิเคชัน Rspack รองรับการสร้างและพัฒนาแอปพลิเคชันมาตรฐานและแอปพลิเคชัน HTML
+
+## การติดตั้ง
+
+ติดตั้ง `@gez/rspack` เป็น dependency สำหรับการพัฒนาโดยใช้ package manager:
+
+<PackageManagerTabs command="install @gez/rspack -D" />
+
+## การส่งออกประเภท
+
+### BuildTarget
+
+```ts
+type BuildTarget = 'node' | 'client' | 'server'
+```
+
+ประเภทสภาพแวดล้อมเป้าหมายการสร้าง กำหนดสภาพแวดล้อมเป้าหมายของแอปพลิเคชัน ใช้สำหรับกำหนดค่าการเพิ่มประสิทธิภาพและฟังก์ชันเฉพาะในกระบวนการสร้าง:
+- `node`: สร้างโค้ดสำหรับการทำงานในสภาพแวดล้อม Node.js
+- `client`: สร้างโค้ดสำหรับการทำงานในสภาพแวดล้อมเบราว์เซอร์
+- `server`: สร้างโค้ดสำหรับการทำงานในสภาพแวดล้อมเซิร์ฟเวอร์
+
+### RspackAppConfigContext
+
+```ts
+interface RspackAppConfigContext {
+  gez: Gez
+  buildTarget: BuildTarget
+  config: RspackOptions
+  options: RspackAppOptions
+}
+```
+
+อินเทอร์เฟซบริบทการกำหนดค่าแอปพลิเคชัน Rspack ให้ข้อมูลบริบทที่สามารถเข้าถึงได้ในฟังก์ชัน hook การกำหนดค่า:
+- `gez`: อินสแตนซ์ของ Gez framework
+- `buildTarget`: เป้าหมายการสร้างปัจจุบัน (client/server/node)
+- `config`: ออบเจ็กต์การกำหนดค่า Rspack
+- `options`: ตัวเลือกการกำหนดค่าแอปพลิเคชัน
+
+### RspackAppOptions
+
+```ts
+interface RspackAppOptions {
+  css?: 'css' | 'style'
+  loaders?: {
+    styleLoader?: string
+  }
+  styleLoader?: Record<string, any>
+  cssLoader?: Record<string, any>
+  target?: {
+    web?: string[]
+    node?: string[]
+  }
+  definePlugin?: Record<string, any>
+  config?: (context: RspackAppConfigContext) => void | Promise<void>
+}
+```
+
+อินเทอร์เฟซตัวเลือกการกำหนดค่าแอปพลิเคชัน Rspack:
+- `css`: วิธีการส่งออก CSS สามารถเลือก 'css' (ไฟล์แยก) หรือ 'style' (สไตล์ inline)
+- `loaders`: การกำหนดค่า loader ที่กำหนดเอง
+- `styleLoader`: ตัวเลือกการกำหนดค่า style-loader
+- `cssLoader`: ตัวเลือกการกำหนดค่า css-loader
+- `target`: การกำหนดค่าความเข้ากันได้ของเป้าหมายการสร้าง
+- `definePlugin`: การกำหนดค่าค่าคงที่ทั่วโลก
+- `config`: ฟังก์ชัน hook การกำหนดค่า
+
+### RspackHtmlAppOptions
+
+สืบทอดจาก `RspackAppOptions` ใช้สำหรับกำหนดค่าตัวเลือกเฉพาะของแอปพลิเคชัน HTML
+
+## การส่งออกฟังก์ชัน
+
+### createRspackApp
+
+```ts
+function createRspackApp(gez: Gez, options?: RspackAppOptions): Promise<App>
+```
+
+สร้างอินสแตนซ์แอปพลิเคชัน Rspack มาตรฐาน
+
+**พารามิเตอร์:**
+- `gez`: อินสแตนซ์ของ Gez framework
+- `options`: ตัวเลือกการกำหนดค่าแอปพลิเคชัน Rspack
+
+**ค่าที่ส่งกลับ:**
+- ส่งกลับ Promise ที่ resolve เป็นอินสแตนซ์แอปพลิเคชันที่สร้างขึ้น
+
+### createRspackHtmlApp
+
+```ts
+function createRspackHtmlApp(gez: Gez, options?: RspackHtmlAppOptions): Promise<App>
+```
+
+สร้างอินสแตนซ์แอปพลิเคชัน Rspack ประเภท HTML
+
+**พารามิเตอร์:**
+- `gez`: อินสแตนซ์ของ Gez framework
+- `options`: ตัวเลือกการกำหนดค่าแอปพลิเคชัน HTML
+
+**ค่าที่ส่งกลับ:**
+- ส่งกลับ Promise ที่ resolve เป็นอินสแตนซ์แอปพลิเคชัน HTML ที่สร้างขึ้น
+
+## การส่งออกค่าคงที่
+### RSPACK_LOADER
+
+```ts
+const RSPACK_LOADER: Record<string, string> = {
+  builtinSwcLoader: 'builtin:swc-loader',
+  lightningcssLoader: 'builtin:lightningcss-loader',
+  styleLoader: 'style-loader',
+  cssLoader: 'css-loader',
+  lessLoader: 'less-loader',
+  styleResourcesLoader: 'style-resources-loader',
+  workerRspackLoader: 'worker-rspack-loader'
+}
+```
+
+ออบเจ็กต์แมปตัวระบุ loader ที่มีอยู่ภายใน Rspack ให้ค่าคงที่ชื่อ loader ที่ใช้บ่อย:
+
+- `builtinSwcLoader`: SWC loader ที่มีอยู่ภายใน Rspack ใช้สำหรับประมวลผลไฟล์ TypeScript/JavaScript
+- `lightningcssLoader`: lightningcss loader ที่มีอยู่ภายใน Rspack ใช้สำหรับคอมไพล์ไฟล์ CSS ด้วยประสิทธิภาพสูง
+- `styleLoader`: loader ที่ใช้สำหรับฉีด CSS เข้าไปใน DOM
+- `cssLoader`: loader ที่ใช้สำหรับแยกวิเคราะห์ไฟล์ CSS และจัดการ CSS modules
+- `lessLoader`: loader ที่ใช้สำหรับคอมไพล์ไฟล์ Less เป็น CSS
+- `styleResourcesLoader`: loader ที่ใช้สำหรับนำเข้า resource สไตล์ทั่วโลก (เช่น ตัวแปร, mixins) โดยอัตโนมัติ
+- `workerRspackLoader`: loader ที่ใช้สำหรับประมวลผลไฟล์ Web Worker
+
+การใช้ค่าคงที่เหล่านี้สามารถอ้างอิง loader ที่มีอยู่ภายในในการกำหนดค่าได้ โดยไม่ต้องป้อนสตริงด้วยตนเอง:
+
+```ts title="src/entry.node.ts"
+import { RSPACK_LOADER } from '@gez/rspack';
+
+export default {
+  async devApp(gez) {
+    return import('@gez/rspack').then((m) =>
+      m.createRspackHtmlApp(gez, {
+        loaders: {
+          // ใช้ค่าคงที่เพื่ออ้างอิง loader
+          styleLoader: RSPACK_LOADER.styleLoader,
+          cssLoader: RSPACK_LOADER.cssLoader,
+          lightningcssLoader: RSPACK_LOADER.lightningcssLoader
+        }
+      })
+    );
+  }
+};
+```
+
+**ข้อควรระวัง:**
+- loader เหล่านี้มีอยู่ภายใน Rspack แล้ว ไม่จำเป็นต้องติดตั้งเพิ่มเติม
+- เมื่อกำหนดค่า loader ที่กำหนดเอง สามารถใช้ค่าคงที่เหล่านี้เพื่อแทนที่การใช้งาน loader เริ่มต้น
+- loader บางตัว (เช่น `builtinSwcLoader`) มีตัวเลือกการกำหนดค่าเฉพาะ ควรอ้างอิงเอกสารการกำหนดค่าที่เกี่ยวข้อง
+
+## การส่งออกโมดูล
+
+### rspack
+
+ส่งออกเนื้อหาทั้งหมดของแพ็คเกจ `@rspack/core` ให้ฟังก์ชันหลักทั้งหมดของ Rspack

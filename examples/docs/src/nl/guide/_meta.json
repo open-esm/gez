@@ -1,0 +1,17 @@
+[
+    {
+        "type": "dir",
+        "name": "start",
+        "label": "Aan de slag"
+    },
+    {
+        "type": "dir",
+        "name": "essentials",
+        "label": "Basis"
+    },
+    {
+        "type": "dir",
+        "name": "frameworks",
+        "label": "Frameworks"
+    }
+]

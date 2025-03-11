@@ -1,0 +1,17 @@
+[
+    {
+        "type": "dir",
+        "name": "start",
+        "label": "เริ่มต้น"
+    },
+    {
+        "type": "dir",
+        "name": "essentials",
+        "label": "พื้นฐาน"
+    },
+    {
+        "type": "dir",
+        "name": "frameworks",
+        "label": "เฟรมเวิร์ก"
+    }
+]

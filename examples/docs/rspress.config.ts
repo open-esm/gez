@@ -27,13 +27,8 @@ export default defineConfig({
             title: 'Gez'
         },
         {
-            lang: 'ja',
-            label: '日本語',
-            title: 'Gez'
-        },
-        {
-            lang: 'fr',
-            label: 'Français',
+            lang: 'hi',
+            label: 'हिन्दी',
             title: 'Gez'
         },
         {
@@ -47,13 +42,8 @@ export default defineConfig({
             title: 'Gez'
         },
         {
-            lang: 'ko',
-            label: '한국어',
-            title: 'Gez'
-        },
-        {
-            lang: 'zh-TW',
-            label: '繁体中文',
+            lang: 'ja',
+            label: '日本語',
             title: 'Gez'
         },
         {
@@ -62,18 +52,43 @@ export default defineConfig({
             title: 'Gez'
         },
         {
+            lang: 'fr',
+            label: 'Français',
+            title: 'Gez'
+        },
+        {
+            lang: 'zh-TW',
+            label: '繁体中文',
+            title: 'Gez'
+        },
+        {
             lang: 'it',
             label: 'Italiano',
             title: 'Gez'
         },
         {
-            lang: 'hi',
-            label: 'हिन्दी',
+            lang: 'ko',
+            label: '한국어',
+            title: 'Gez'
+        },
+        {
+            lang: 'nl',
+            label: 'Nederlands',
+            title: 'Gez'
+        },
+        {
+            lang: 'pl',
+            label: 'Polski',
             title: 'Gez'
         },
         {
             lang: 'tr',
             label: 'Türkçe',
+            title: 'Gez'
+        },
+        {
+            lang: 'th',
+            label: 'ไทย',
             title: 'Gez'
         },
         {

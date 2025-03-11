@@ -1,0 +1,17 @@
+[
+  {
+    "text": "คู่มือ",
+    "link": "/guide/start/introduction",
+    "activeMatch": "/guide/"
+  },
+  {
+    "text": "API",
+    "link": "/api/core/gez", 
+    "activeMatch": "/api/"
+  },
+  {
+    "text": "บล็อก",
+    "link": "/blog/index",
+    "activeMatch": "/blog/"
+  }
+]
