@@ -408,6 +408,7 @@ export async function createRspackHtmlApp(
                     }),
                     new rspack.LightningCssMinimizerRspackPlugin({
                         minimizerOptions: {
+                            targets: options.target?.web,
                             errorRecovery: false
                         }
                     })
