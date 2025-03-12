@@ -27,10 +27,10 @@ Installieren Sie `@gez/rspack` als Entwicklungsabhängigkeit mit einem Paketmana
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Der BuildTarget-Typ definiert die Zielumgebung für den Build der Anwendung und wird verwendet, um spezifische Optimierungen und Funktionen im Build-Prozess zu konfigurieren:
-- `node`: Code, der in einer Node.js-Umgebung ausgeführt wird
-- `client`: Code, der in einer Browser-Umgebung ausgeführt wird
-- `server`: Code, der in einer Server-Umgebung ausgeführt wird
+Der BuildTarget-Typ definiert die Zielumgebung für den Build einer Anwendung und wird verwendet, um spezifische Optimierungen und Funktionen im Build-Prozess zu konfigurieren:
+- `node`: Build für Code, der in einer Node.js-Umgebung ausgeführt wird
+- `client`: Build für Code, der in einer Browser-Umgebung ausgeführt wird
+- `server`: Build für Code, der in einer Server-Umgebung ausgeführt wird
 
 ### RspackAppConfigContext
 
@@ -43,7 +43,7 @@ interface RspackAppConfigContext {
 }
 ```
 
-Das RspackAppConfigContext-Interface bietet Kontextinformationen, die in Konfigurations-Hook-Funktionen zugänglich sind:
+Die RspackAppConfigContext-Schnittstelle bietet Kontextinformationen, die in Konfigurations-Hook-Funktionen zugänglich sind:
 - `gez`: Gez Framework-Instanz
 - `buildTarget`: Aktuelles Build-Ziel (client/server/node)
 - `config`: Rspack-Konfigurationsobjekt
@@ -53,7 +53,7 @@ Das RspackAppConfigContext-Interface bietet Kontextinformationen, die in Konfigu
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -68,8 +68,8 @@ interface RspackAppOptions {
 }
 ```
 
-Das RspackAppOptions-Interface:
-- `css`: CSS-Ausgabemethode, entweder 'css' (separate Datei) oder 'style' (Inline-Styles)
+Die RspackAppOptions-Schnittstelle für Anwendungskonfigurationsoptionen:
+- `css`: CSS-Ausgabemethode, entweder 'css' (separate Datei) oder 'js' (in JS gebündelt), standardmäßig automatisch basierend auf der Umgebung: Produktionsumgebung verwendet 'css' zur Optimierung von Caching und parallelem Laden, Entwicklungsumgebung verwendet 'js' zur Unterstützung von Hot Module Replacement (HMR)
 - `loaders`: Benutzerdefinierte Loader-Konfiguration
 - `styleLoader`: style-loader-Konfigurationsoptionen
 - `cssLoader`: css-loader-Konfigurationsoptionen
@@ -130,15 +130,15 @@ const RSPACK_LOADER: Record<string, string> = {
 
 Ein Mapping-Objekt für integrierte Rspack-Loader-Identifikatoren, das häufig verwendete Loader-Namen als Konstanten bereitstellt:
 
-- `builtinSwcLoader`: Integrierter SWC-Loader von Rspack, verarbeitet TypeScript/JavaScript-Dateien
-- `lightningcssLoader`: Integrierter lightningcss-Loader von Rspack, ein leistungsstarker Compiler für CSS-Dateien
-- `styleLoader`: Loader, der CSS in das DOM injiziert
-- `cssLoader`: Loader, der CSS-Dateien parst und CSS-Modularisierung verarbeitet
-- `lessLoader`: Loader, der Less-Dateien in CSS kompiliert
-- `styleResourcesLoader`: Loader, der automatisch globale Stilressourcen (wie Variablen, Mixins) importiert
-- `workerRspackLoader`: Loader, der Web Worker-Dateien verarbeitet
+- `builtinSwcLoader`: Integrierter SWC-Loader von Rspack, verwendet zur Verarbeitung von TypeScript/JavaScript-Dateien
+- `lightningcssLoader`: Integrierter lightningcss-Loader von Rspack, verwendet zur Verarbeitung von CSS-Dateien mit einem leistungsstarken Compiler
+- `styleLoader`: Loader zum Einfügen von CSS in das DOM
+- `cssLoader`: Loader zum Parsen von CSS-Dateien und zur Handhabung von CSS-Modularisierung
+- `lessLoader`: Loader zum Kompilieren von Less-Dateien in CSS
+- `styleResourcesLoader`: Loader zum automatischen Importieren globaler Stilressourcen (wie Variablen, Mixins)
+- `workerRspackLoader`: Loader zur Verarbeitung von Web Worker-Dateien
 
-Diese Konstanten können in der Konfiguration verwendet werden, um auf integrierte Loader zu verweisen, anstatt Strings manuell einzugeben:
+Diese Konstanten können in der Konfiguration verwendet werden, um auf integrierte Loader zu verweisen, anstatt Zeichenketten manuell einzugeben:
 
 ```ts title="src/entry.node.ts"
 import { RSPACK_LOADER } from '@gez/rspack';
@@ -160,12 +160,12 @@ export default {
 ```
 
 **Hinweise:**
-- Diese Loader sind bereits in Rspack integriert und müssen nicht zusätzlich installiert werden
+- Diese Loader sind bereits in Rspack integriert und erfordern keine zusätzliche Installation
 - Bei benutzerdefinierten Loader-Konfigurationen können diese Konstanten verwendet werden, um die Standard-Loader-Implementierung zu ersetzen
-- Einige Loader (wie `builtinSwcLoader`) haben spezifische Konfigurationsoptionen. Bitte konsultieren Sie die entsprechende Dokumentation
+- Einige Loader (wie `builtinSwcLoader`) haben spezifische Konfigurationsoptionen, bitte konsultieren Sie die entsprechende Dokumentation
 
 ## Modulexporte
 
 ### rspack
 
-Re-Exportiert alle Inhalte des `@rspack/core`-Pakets und bietet vollständige Rspack-Kernfunktionen.
+Re-Exportiert alle Inhalte des `@rspack/core`-Pakets und bietet vollständige Rspack-Kernfunktionalität.

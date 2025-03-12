@@ -11,7 +11,7 @@ import { PackageManagerTabs } from '@theme';
 
 # @gez/rspack
 
-Rspack paketi, Rspack uygulamaları oluşturmak ve yapılandırmak için bir API seti sağlar, standart uygulamalar ve HTML uygulamalarının yapılandırılmasını ve geliştirilmesini destekler.
+Rspack paketi, standart uygulamalar ve HTML uygulamalarının yapılandırılmasını ve geliştirilmesini destekleyen Rspack uygulamaları oluşturmak ve yapılandırmak için bir API seti sağlar.
 
 ## Kurulum
 
@@ -27,7 +27,7 @@ Paket yöneticisi kullanarak `@gez/rspack` geliştirme bağımlılığını yük
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Yapı hedef ortamı türü, uygulamanın yapı hedef ortamını tanımlar, yapı sürecindeki belirli optimizasyonlar ve işlevler için kullanılır:
+Yapı hedef ortam türü, uygulamanın yapı hedef ortamını tanımlar ve yapı sürecindeki belirli optimizasyonları ve işlevleri yapılandırmak için kullanılır:
 - `node`: Node.js ortamında çalışacak kod olarak yapılandırma
 - `client`: Tarayıcı ortamında çalışacak kod olarak yapılandırma
 - `server`: Sunucu ortamında çalışacak kod olarak yapılandırma
@@ -53,7 +53,7 @@ Rspack uygulama yapılandırma bağlamı arayüzü, yapılandırma kancası işl
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,7 +69,7 @@ interface RspackAppOptions {
 ```
 
 Rspack uygulama yapılandırma seçenekleri arayüzü:
-- `css`: CSS çıktı yöntemi, 'css' (bağımsız dosya) veya 'style' (satır içi stil) seçenekleri
+- `css`: CSS çıktı yöntemi, 'css' (bağımsız dosya) veya 'js' (JS'ye paketlenmiş) olarak seçilebilir, varsayılan olarak ortama göre otomatik seçilir: üretim ortamında önbelleği ve paralel yüklemeyi optimize etmek için 'css' kullanılır, geliştirme ortamında sıcak güncellemeyi (HMR) desteklemek için 'js' kullanılır
 - `loaders`: Özel loader yapılandırması
 - `styleLoader`: style-loader yapılandırma seçenekleri
 - `cssLoader`: css-loader yapılandırma seçenekleri
@@ -128,10 +128,10 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-Rspack'in yerleşik loader tanımlayıcıları eşleme nesnesi, yaygın kullanılan loader adları için sabitler sağlar:
+Rspack'ın yerleşik loader tanımlayıcı eşleme nesnesi, yaygın kullanılan loader adı sabitlerini sağlar:
 
-- `builtinSwcLoader`: TypeScript/JavaScript dosyalarını işlemek için Rspack'in yerleşik SWC loader'ı
-- `lightningcssLoader`: CSS dosyalarını yüksek performansla derlemek için Rspack'in yerleşik lightningcss loader'ı
+- `builtinSwcLoader`: TypeScript/JavaScript dosyalarını işlemek için Rspack'ın yerleşik SWC loader'ı
+- `lightningcssLoader`: CSS dosyalarını işlemek için Rspack'ın yerleşik lightningcss loader'ı, yüksek performanslı CSS derleyicisi
 - `styleLoader`: CSS'yi DOM'a enjekte etmek için kullanılan loader
 - `cssLoader`: CSS dosyalarını ayrıştırmak ve CSS modülerleştirmeyi işlemek için kullanılan loader
 - `lessLoader`: Less dosyalarını CSS'ye derlemek için kullanılan loader
@@ -148,7 +148,7 @@ export default {
     return import('@gez/rspack').then((m) =>
       m.createRspackHtmlApp(gez, {
         loaders: {
-          // Sabitleri kullanarak loader'lara referans ver
+          // Sabitleri kullanarak loader'lara referans verin
           styleLoader: RSPACK_LOADER.styleLoader,
           cssLoader: RSPACK_LOADER.cssLoader,
           lightningcssLoader: RSPACK_LOADER.lightningcssLoader
@@ -160,12 +160,12 @@ export default {
 ```
 
 **Dikkat Edilmesi Gerekenler:**
-- Bu loader'lar Rspack'te yerleşik olarak bulunur, ek kurulum gerektirmez
+- Bu loader'lar Rspack'ta yerleşik olarak bulunur, ek kurulum gerektirmez
 - Özel loader yapılandırması yaparken, varsayılan loader uygulamalarını değiştirmek için bu sabitleri kullanabilirsiniz
-- Bazı loader'lar (`builtinSwcLoader` gibi) belirli yapılandırma seçeneklerine sahiptir, lütfen ilgili yapılandırma belgelerine bakın
+- Bazı loader'ların (`builtinSwcLoader` gibi) belirli yapılandırma seçenekleri vardır, ilgili yapılandırma belgelerine başvurun
 
 ## Modül İhracı
 
 ### rspack
 
-`@rspack/core` paketinin tüm içeriğini yeniden ihraç eder, Rspack'in temel işlevlerinin tamamını sağlar.
+`@rspack/core` paketinin tüm içeriğini yeniden ihraç eder, Rspack'ın temel işlevlerinin tamamını sağlar.

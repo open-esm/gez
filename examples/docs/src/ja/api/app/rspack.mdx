@@ -53,7 +53,7 @@ Rspack アプリケーション設定コンテキストインターフェース�
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,7 +69,7 @@ interface RspackAppOptions {
 ```
 
 Rspack アプリケーション設定オプションインターフェース：
-- `css`: CSS 出力方式。'css'（独立ファイル）または 'style'（インラインスタイル）を選択可能
+- `css`: CSS 出力方法。'css'（独立ファイル）または 'js'（JS にバンドル）を選択可能。デフォルトでは環境に応じて自動選択：本番環境ではキャッシュと並列読み込みを最適化するために 'css' を使用し、開発環境ではホットリロード（HMR）をサポートするために 'js' を使用
 - `loaders`: カスタム loader 設定
 - `styleLoader`: style-loader 設定オプション
 - `cssLoader`: css-loader 設定オプション
@@ -96,7 +96,7 @@ function createRspackApp(gez: Gez, options?: RspackAppOptions): Promise<App>
 - `options`: Rspack アプリケーション設定オプション
 
 **戻り値：**
-- 作成されたアプリケーションインスタンスを解決する Promise を返します
+- 作成されたアプリケーションインスタンスに解決される Promise を返します
 
 ### createRspackHtmlApp
 
@@ -111,7 +111,7 @@ HTML タイプの Rspack アプリケーションインスタンスを作成し�
 - `options`: HTML アプリケーション設定オプション
 
 **戻り値：**
-- 作成された HTML アプリケーションインスタンスを解決する Promise を返します
+- 作成された HTML アプリケーションインスタンスに解決される Promise を返します
 
 ## 定数エクスポート
 ### RSPACK_LOADER
@@ -133,10 +133,10 @@ Rspack 組み込みの loader 識別子マッピングオブジェクト。一�
 - `builtinSwcLoader`: Rspack 組み込みの SWC loader。TypeScript/JavaScript ファイルを処理します
 - `lightningcssLoader`: Rspack 組み込みの lightningcss loader。CSS ファイルの高性能コンパイラです
 - `styleLoader`: CSS を DOM に注入するための loader
-- `cssLoader`: CSS ファイルを解析し、CSS モジュール化を処理する loader
-- `lessLoader`: Less ファイルを CSS にコンパイルする loader
-- `styleResourcesLoader`: グローバルスタイルリソース（変数、mixins など）を自動的にインポートする loader
-- `workerRspackLoader`: Web Worker ファイルを処理する loader
+- `cssLoader`: CSS ファイルを解析し、CSS モジュール化を処理するための loader
+- `lessLoader`: Less ファイルを CSS にコンパイルするための loader
+- `styleResourcesLoader`: グローバルスタイルリソース（変数、mixins など）を自動的にインポートするための loader
+- `workerRspackLoader`: Web Worker ファイルを処理するための loader
 
 これらの定数を使用して、設定内で組み込みの loader を参照できます。手動で文字列を入力する必要がありません：
 
@@ -162,7 +162,7 @@ export default {
 **注意事項：**
 - これらの loader は Rspack に組み込まれており、追加のインストールは不要です
 - カスタム loader 設定では、これらの定数を使用してデフォルトの loader 実装を置き換えることができます
-- 一部の loader（例：`builtinSwcLoader`）には特定の設定オプションがあります。関連する設定ドキュメントを参照してください
+- 一部の loader（例：`builtinSwcLoader`）には特定の設定オプションがあります。対応する設定ドキュメントを参照してください
 
 ## モジュールエクスポート
 

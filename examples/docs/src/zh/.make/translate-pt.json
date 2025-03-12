@@ -84,8 +84,8 @@
         "target": "43c202666162529cbc5d69c22d92f8ec768979f5a7a1803bd1a825b1acd9ee16"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "4409346876a43c4357cdddf6c72fccd2a26f5a0a0d54a776fcdf2258f21d82fd"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "833531542f66454c780bba0c803ce9b33cd19e2cd31eab152a34674dd108cda8"
     },
     "guide/essentials/alias.md": {
         "source": "1cf2cca65bd17dc5eaa235296559c2e12b0eed5d3ad1f99294d13e2b801feac2",
@@ -96,7 +96,7 @@
         "target": "b9d8d795dbaf8e2935b4f94f0d515722650d57649cffe95c3ad3251b2cb3801e"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "27020bb804cfd7b718dec9f78c4902cb211d89afc0228ba5c8f75d058c1a5fb9"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "8815cf822f845995dc03bfc2735f9732a17b69acb6d4e160e8719444f341b668"
     }
 }

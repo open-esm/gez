@@ -1,17 +1,17 @@
 ---
-titleSuffix: Gez Framework Vue Bouwgereedschap
-description: Het Vue-specifieke bouwgereedschap van het Gez-framework biedt volledige ondersteuning voor het bouwen van Vue 2/3-applicaties, inclusief componentontwikkeling, SSR-rendering en prestatieoptimalisatie.
+titleSuffix: Gez Framework Vue Bouwhulpmiddel
+description: Het Vue-specifieke bouwhulpmiddel van het Gez-framework biedt volledige ondersteuning voor het bouwen van Vue 2/3-toepassingen, inclusief componentontwikkeling, SSR-rendering en prestatieoptimalisatie.
 head:
   - - meta
     - property: keywords
-      content: Gez, Rspack, Vue, Vue2, Vue3, SSR, bouwgereedschap, componentontwikkeling, server-side rendering, prestatieoptimalisatie
+      content: Gez, Rspack, Vue, Vue2, Vue3, SSR, bouwhulpmiddel, componentontwikkeling, server-side rendering, prestatieoptimalisatie
 ---
 
 import { PackageManagerTabs } from '@theme';
 
 # @gez/rspack-vue
 
-Het Rspack Vue-pakket biedt een set API's voor het maken en configureren van Rspack-applicaties op basis van het Vue-framework, met ondersteuning voor Vue-componentontwikkeling, bouwen en server-side rendering.
+Het Rspack Vue-pakket biedt een set API's voor het maken en configureren van Rspack-toepassingen op basis van het Vue-framework, met ondersteuning voor Vue-componentontwikkeling, bouwen en server-side rendering.
 
 ## Installatie
 
@@ -27,7 +27,7 @@ Installeer `@gez/rspack-vue` als ontwikkelingsafhankelijkheid met behulp van een
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Het type bouwdoelomgeving definieert de doelomgeving van de applicatie, gebruikt voor het configureren van specifieke optimalisaties en functies tijdens het bouwproces:
+Het type bouwdoelomgeving definieert de doelomgeving van de toepassing, gebruikt voor het configureren van specifieke optimalisaties en functies tijdens het bouwproces:
 - `node`: Bouwt code die wordt uitgevoerd in een Node.js-omgeving
 - `client`: Bouwt code die wordt uitgevoerd in een browseromgeving
 - `server`: Bouwt code die wordt uitgevoerd in een serveromgeving
@@ -43,17 +43,17 @@ interface RspackAppConfigContext {
 }
 ```
 
-De Rspack-applicatieconfiguratiecontextinterface biedt contextinformatie die toegankelijk is in configuratiehookfuncties:
+De Rspack-toepassingsconfiguratiecontextinterface biedt contextinformatie die toegankelijk is in configuratiehookfuncties:
 - `gez`: Gez-frameworkinstantie
 - `buildTarget`: Huidig bouwdoel (client/server/node)
 - `config`: Rspack-configuratieobject
-- `options`: Applicatieconfiguratieopties
+- `options`: Toepassingsconfiguratieopties
 
 ### RspackAppOptions
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -68,18 +68,18 @@ interface RspackAppOptions {
 }
 ```
 
-De Rspack-applicatieconfiguratieoptiesinterface:
-- `css`: CSS-uitvoermethode, optioneel 'css' (afzonderlijk bestand) of 'style' (inline stijlen)
+De Rspack-toepassingsconfiguratieoptiesinterface:
+- `css`: CSS-uitvoermethode, optioneel 'css' (afzonderlijk bestand) of 'js' (ingebouwd in JS), standaard automatisch geselecteerd op basis van de omgeving: productieomgeving gebruikt 'css' voor cache- en parallelle laadoptimalisatie, ontwikkelomgeving gebruikt 'js' voor ondersteuning van hot module replacement (HMR)
 - `loaders`: Aangepaste loader-configuratie
 - `styleLoader`: style-loader-configuratieopties
 - `cssLoader`: css-loader-configuratieopties
 - `target`: Bouwdoelcompatibiliteitsconfiguratie
-- `definePlugin`: Globale constantedefinitie
+- `definePlugin`: Globale constante definities
 - `config`: Configuratiehookfunctie
 
 ### RspackHtmlAppOptions
 
-Erft over van `RspackAppOptions`, gebruikt voor het configureren van specifieke opties voor HTML-applicaties.
+Erft over van `RspackAppOptions`, gebruikt voor het configureren van specifieke opties voor HTML-toepassingen.
 
 ## Functie-exporten
 
@@ -89,14 +89,14 @@ Erft over van `RspackAppOptions`, gebruikt voor het configureren van specifieke 
 function createRspackApp(gez: Gez, options?: RspackAppOptions): Promise<App>
 ```
 
-Maakt een standaard Rspack-applicatie-instantie.
+Maakt een standaard Rspack-toepassingsinstantie.
 
 **Parameters:**
 - `gez`: Gez-frameworkinstantie
-- `options`: Rspack-applicatieconfiguratieopties
+- `options`: Rspack-toepassingsconfiguratieopties
 
 **Retourwaarde:**
-- Retourneert een Promise die wordt opgelost naar de gemaakte applicatie-instantie
+- Retourneert een Promise die wordt opgelost naar de gemaakte toepassingsinstantie
 
 ### createRspackHtmlApp
 
@@ -104,14 +104,14 @@ Maakt een standaard Rspack-applicatie-instantie.
 function createRspackHtmlApp(gez: Gez, options?: RspackHtmlAppOptions): Promise<App>
 ```
 
-Maakt een HTML-type Rspack-applicatie-instantie.
+Maakt een HTML-type Rspack-toepassingsinstantie.
 
 **Parameters:**
 - `gez`: Gez-frameworkinstantie
-- `options`: HTML-applicatieconfiguratieopties
+- `options`: HTML-toepassingsconfiguratieopties
 
 **Retourwaarde:**
-- Retourneert een Promise die wordt opgelost naar de gemaakte HTML-applicatie-instantie
+- Retourneert een Promise die wordt opgelost naar de gemaakte HTML-toepassingsinstantie
 
 ## Constante-exporten
 ### RSPACK_LOADER
@@ -128,17 +128,17 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-De Rspack-ingebouwde loader-identificatietoewijzingsobject, biedt veelgebruikte loader-naamconstanten:
+De Rspack ingebouwde loader-identificatietoewijzingsobject, biedt veelgebruikte loader-naamconstanten:
 
-- `builtinSwcLoader`: Rspack-ingebouwde SWC-loader, gebruikt voor het verwerken van TypeScript/JavaScript-bestanden
-- `lightningcssLoader`: Rspack-ingebouwde lightningcss-loader, gebruikt voor het verwerken van CSS-bestanden met een hoge prestaties compiler
+- `builtinSwcLoader`: Rspack ingebouwde SWC-loader, gebruikt voor het verwerken van TypeScript/JavaScript-bestanden
+- `lightningcssLoader`: Rspack ingebouwde lightningcss-loader, gebruikt voor het verwerken van CSS-bestanden met een hoogwaardige compiler
 - `styleLoader`: Loader voor het injecteren van CSS in de DOM
 - `cssLoader`: Loader voor het parseren van CSS-bestanden en het verwerken van CSS-modularisatie
 - `lessLoader`: Loader voor het compileren van Less-bestanden naar CSS
 - `styleResourcesLoader`: Loader voor het automatisch importeren van globale stijlresources (zoals variabelen, mixins)
 - `workerRspackLoader`: Loader voor het verwerken van Web Worker-bestanden
 
-Het gebruik van deze constanten maakt het mogelijk om in configuraties naar ingebouwde loaders te verwijzen, zonder handmatig strings in te voeren:
+Het gebruik van deze constanten maakt het mogelijk om in configuraties naar ingebouwde loaders te verwijzen, waardoor handmatige invoer van strings wordt vermeden:
 
 ```ts title="src/entry.node.ts"
 import { RSPACK_LOADER } from '@gez/rspack';
@@ -159,7 +159,7 @@ export default {
 };
 ```
 
-**Opmerkingen:**
+**Belangrijke opmerkingen:**
 - Deze loaders zijn al ingebouwd in Rspack en hoeven niet apart te worden geïnstalleerd
 - Bij het configureren van aangepaste loaders kunnen deze constanten worden gebruikt om de standaard loader-implementatie te vervangen
 - Sommige loaders (zoals `builtinSwcLoader`) hebben specifieke configuratieopties, raadpleeg de bijbehorende configuratiedocumentatie

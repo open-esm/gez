@@ -1,6 +1,6 @@
 ---
 titleSuffix: Gez Framework Vue Build-Tool
-description: Spezielles Build-Tool des Gez Frameworks für Vue, das umfassende Unterstützung für den Aufbau von Vue 2/3-Anwendungen bietet, einschließlich Komponentenentwicklung, SSR-Rendering und Leistungsoptimierung.
+description: Spezialisiertes Build-Tool des Gez Frameworks für Vue, bietet umfassende Unterstützung für den Aufbau von Vue 2/3-Anwendungen, einschließlich Komponentenentwicklung, SSR-Rendering und Leistungsoptimierung.
 head:
   - - meta
     - property: keywords
@@ -53,7 +53,7 @@ Das RspackAppConfigContext-Interface bietet Kontextinformationen, die in Konfigu
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,7 +69,7 @@ interface RspackAppOptions {
 ```
 
 Das RspackAppOptions-Interface:
-- `css`: CSS-Ausgabemethode, entweder 'css' (separate Datei) oder 'style' (Inline-Styles)
+- `css`: CSS-Ausgabemethode, entweder 'css' (separate Datei) oder 'js' (in JS gebündelt), standardmäßig automatisch basierend auf der Umgebung ausgewählt: Produktionsumgebung verwendet 'css' zur Optimierung von Caching und parallelem Laden, Entwicklungsumgebung verwendet 'js' zur Unterstützung von Hot Module Replacement (HMR)
 - `loaders`: Benutzerdefinierte Loader-Konfiguration
 - `styleLoader`: style-loader-Konfigurationsoptionen
 - `cssLoader`: css-loader-Konfigurationsoptionen
@@ -79,7 +79,7 @@ Das RspackAppOptions-Interface:
 
 ### RspackHtmlAppOptions
 
-Erbt von `RspackAppOptions` und wird verwendet, um spezifische Optionen für HTML-Anwendungen zu konfigurieren.
+Erbt von `RspackAppOptions` und wird zur Konfiguration spezifischer Optionen für HTML-Anwendungen verwendet.
 
 ## Funktionsexporte
 
@@ -128,17 +128,17 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-Ein Mapping-Objekt für die internen Rspack-Loader-Bezeichner, das häufig verwendete Loader-Namen als Konstanten bereitstellt:
+Ein Mapping-Objekt für die integrierten Loader-Identifikatoren von Rspack, das häufig verwendete Loader-Namen als Konstanten bereitstellt:
 
-- `builtinSwcLoader`: Interner SWC-Loader von Rspack, der TypeScript/JavaScript-Dateien verarbeitet
-- `lightningcssLoader`: Interner lightningcss-Loader von Rspack, ein Hochleistungs-Compiler für CSS-Dateien
-- `styleLoader`: Loader, der CSS in das DOM injiziert
-- `cssLoader`: Loader, der CSS-Dateien parst und CSS-Modularisierung verarbeitet
-- `lessLoader`: Loader, der Less-Dateien in CSS kompiliert
-- `styleResourcesLoader`: Loader, der automatisch globale Stilressourcen (wie Variablen, Mixins) importiert
-- `workerRspackLoader`: Loader, der Web Worker-Dateien verarbeitet
+- `builtinSwcLoader`: Integrierter SWC-Loader von Rspack, verarbeitet TypeScript/JavaScript-Dateien
+- `lightningcssLoader`: Integrierter lightningcss-Loader von Rspack, ein Hochleistungs-Compiler für CSS-Dateien
+- `styleLoader`: Loader zum Einfügen von CSS in das DOM
+- `cssLoader`: Loader zum Parsen von CSS-Dateien und Verarbeiten von CSS-Modulen
+- `lessLoader`: Loader zum Kompilieren von Less-Dateien in CSS
+- `styleResourcesLoader`: Loader zum automatischen Importieren globaler Stilressourcen (z.B. Variablen, Mixins)
+- `workerRspackLoader`: Loader zum Verarbeiten von Web Worker-Dateien
 
-Diese Konstanten können in der Konfiguration verwendet werden, um auf interne Loader zu verweisen, anstatt Zeichenketten manuell einzugeben:
+Diese Konstanten können in der Konfiguration verwendet werden, um auf integrierte Loader zu verweisen, anstatt Zeichenketten manuell einzugeben:
 
 ```ts title="src/entry.node.ts"
 import { RSPACK_LOADER } from '@gez/rspack';
@@ -162,7 +162,7 @@ export default {
 **Hinweise:**
 - Diese Loader sind bereits in Rspack integriert und müssen nicht zusätzlich installiert werden
 - Bei benutzerdefinierten Loader-Konfigurationen können diese Konstanten verwendet werden, um die Standard-Loader-Implementierung zu ersetzen
-- Einige Loader (wie `builtinSwcLoader`) haben spezifische Konfigurationsoptionen. Bitte konsultieren Sie die entsprechende Dokumentation
+- Einige Loader (z.B. `builtinSwcLoader`) haben spezifische Konfigurationsoptionen, bitte konsultieren Sie die entsprechende Dokumentation
 
 ## Modulexporte
 

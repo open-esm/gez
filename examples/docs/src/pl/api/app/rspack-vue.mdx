@@ -1,6 +1,6 @@
 ---
-titleSuffix: Gez Framework - Narzędzie do budowania Vue
-description: Specjalistyczne narzędzie do budowania aplikacji Vue w ramach frameworka Gez, zapewniające pełne wsparcie dla aplikacji Vue 2/3, w tym rozwój komponentów, renderowanie SSR i optymalizację wydajności.
+titleSuffix: Narzędzie do budowania Vue w ramach Gez
+description: Specjalistyczne narzędzie do budowania aplikacji Vue w ramach Gez, zapewniające pełne wsparcie dla aplikacji Vue 2/3, w tym rozwój komponentów, renderowanie SSR i optymalizację wydajności.
 head:
   - - meta
     - property: keywords
@@ -27,10 +27,10 @@ Zainstaluj `@gez/rspack-vue` jako zależność deweloperską za pomocą menedże
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Typ środowiska docelowego budowania, definiujący środowisko docelowe aplikacji, używany do konfigurowania określonych optymalizacji i funkcji w procesie budowania:
+Typ środowiska docelowego budowania, definiujący środowisko docelowe aplikacji, używane do konfiguracji określonych optymalizacji i funkcji w procesie budowania:
 - `node`: Budowanie kodu do uruchomienia w środowisku Node.js
 - `client`: Budowanie kodu do uruchomienia w środowisku przeglądarki
-- `server`: Budowanie kodu do uruchomienia w środowisku serwera
+- `server`: Budowanie kodu do uruchomienia w środowisku serwerowym
 
 ### RspackAppConfigContext
 
@@ -44,7 +44,7 @@ interface RspackAppConfigContext {
 ```
 
 Interfejs kontekstu konfiguracji aplikacji Rspack, dostarczający informacji kontekstowych dostępnych w funkcjach hooków konfiguracyjnych:
-- `gez`: Instancja frameworka Gez
+- `gez`: Instancja frameworku Gez
 - `buildTarget`: Aktualny cel budowania (client/server/node)
 - `config`: Obiekt konfiguracji Rspack
 - `options`: Opcje konfiguracji aplikacji
@@ -53,7 +53,7 @@ Interfejs kontekstu konfiguracji aplikacji Rspack, dostarczający informacji kon
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,17 +69,17 @@ interface RspackAppOptions {
 ```
 
 Interfejs opcji konfiguracji aplikacji Rspack:
-- `css`: Sposób wyjścia CSS, możliwe opcje to 'css' (osobny plik) lub 'style' (style inline)
+- `css`: Sposób wyjścia CSS, opcjonalnie 'css' (osobny plik) lub 'js' (wbudowany w JS), domyślnie wybierany automatycznie w zależności od środowiska: środowisko produkcyjne używa 'css' w celu optymalizacji pamięci podręcznej i równoległego ładowania, środowisko deweloperskie używa 'js' w celu wsparcia aktualizacji na gorąco (HMR)
 - `loaders`: Niestandardowa konfiguracja loaderów
 - `styleLoader`: Opcje konfiguracji style-loader
 - `cssLoader`: Opcje konfiguracji css-loader
 - `target`: Konfiguracja kompatybilności celu budowania
-- `definePlugin`: Definicje stałych globalnych
+- `definePlugin`: Definicje globalnych stałych
 - `config`: Funkcja hooka konfiguracyjnego
 
 ### RspackHtmlAppOptions
 
-Dziedziczy po `RspackAppOptions`, używany do konfigurowania specyficznych opcji aplikacji HTML.
+Dziedziczy po `RspackAppOptions`, używane do konfiguracji specyficznych opcji aplikacji HTML.
 
 ## Eksport funkcji
 
@@ -92,7 +92,7 @@ function createRspackApp(gez: Gez, options?: RspackAppOptions): Promise<App>
 Tworzy standardową instancję aplikacji Rspack.
 
 **Parametry:**
-- `gez`: Instancja frameworka Gez
+- `gez`: Instancja frameworku Gez
 - `options`: Opcje konfiguracji aplikacji Rspack
 
 **Wartość zwracana:**
@@ -107,7 +107,7 @@ function createRspackHtmlApp(gez: Gez, options?: RspackHtmlAppOptions): Promise<
 Tworzy instancję aplikacji Rspack typu HTML.
 
 **Parametry:**
-- `gez`: Instancja frameworka Gez
+- `gez`: Instancja frameworku Gez
 - `options`: Opcje konfiguracji aplikacji HTML
 
 **Wartość zwracana:**
@@ -128,7 +128,7 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-Obiekt mapowania identyfikatorów wbudowanych loaderów Rspack, dostarczający stałe nazwy często używanych loaderów:
+Obiekt mapowania identyfikatorów wbudowanych loaderów Rspack, dostarczający stałych nazw często używanych loaderów:
 
 - `builtinSwcLoader`: Wbudowany loader SWC w Rspack, używany do przetwarzania plików TypeScript/JavaScript
 - `lightningcssLoader`: Wbudowany loader lightningcss w Rspack, używany do przetwarzania plików CSS z wysoką wydajnością
@@ -138,7 +138,7 @@ Obiekt mapowania identyfikatorów wbudowanych loaderów Rspack, dostarczający s
 - `styleResourcesLoader`: Loader używany do automatycznego importowania globalnych zasobów stylów (np. zmiennych, mixins)
 - `workerRspackLoader`: Loader używany do przetwarzania plików Web Worker
 
-Użycie tych stałych pozwala na odwoływanie się do wbudowanych loaderów w konfiguracji, unikając ręcznego wpisywania ciągów znaków:
+Użycie tych stałych pozwala na odwoływanie się do wbudowanych loaderów w konfiguracji, unikając ręcznego wprowadzania ciągów znaków:
 
 ```ts title="src/entry.node.ts"
 import { RSPACK_LOADER } from '@gez/rspack';

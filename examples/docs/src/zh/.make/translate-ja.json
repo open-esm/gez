@@ -40,8 +40,8 @@
         "target": "db20b6298c8f34e0e66ebca1475a0be04fc66a24263cca8473b43bb603420cda"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "ea3a330a718719e16b0772a702cec946ec064394335e42e39dccba4903153b3f"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "2f4ccf7fa593a532b3b3262d0fab3ea12e0430d1937fbda7ffe8d28a229ac977"
     },
     "blog/index.md": {
         "source": "26df121f3a3388d46c03c015abb368d89a8c00239e1546b7c0379f2b6479bba7",
@@ -64,8 +64,8 @@
         "target": "d8016b7794d1a5136fc18f42dba9901e0a3e70dbdf7b4abe4282c268e1cab327"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "52259d571e94832582e162943a3823e390a9058fb5ffcffff3c2fbd17ffa388e"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "1df7bfa1b65f9853e479bcaf8733640dc42dca5114fae72b89c2cebe7bab31e8"
     },
     "guide/essentials/render-context.md": {
         "source": "dcadc48313b8a33f6fa0484dcacd13f994d0e9bbea50b384c47529ba715c2a4c",

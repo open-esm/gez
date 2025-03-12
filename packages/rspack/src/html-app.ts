@@ -56,7 +56,9 @@ export interface RspackHtmlAppOptions extends RspackAppOptions {
     /**
      * CSS 输出模式配置
      *
-     * @default 'css'
+     * @default 根据环境自动选择：
+     * - 生产环境: 'css'，将CSS输出到独立文件中，有利于缓存和并行加载
+     * - 开发环境: 'js'，将CSS打包到JS中以支持热更新(HMR)，实现样式的即时更新
      *
      * - 'css': 将 CSS 输出到独立的 CSS 文件中
      * - 'js': 将 CSS 打包到 JS 文件中，运行时动态插入样式
@@ -64,10 +66,13 @@ export interface RspackHtmlAppOptions extends RspackAppOptions {
      *
      * @example
      * ```ts
-     * // 输出到独立的 CSS 文件
+     * // 使用环境默认配置
+     * css: undefined
+     *
+     * // 强制输出到独立的 CSS 文件
      * css: 'css'
      *
-     * // 打包到 JS 中
+     * // 强制打包到 JS 中
      * css: 'js'
      *
      * // 自定义 CSS 处理
@@ -324,7 +329,8 @@ export async function createRspackHtmlApp(
             web: ['chrome>=87', 'edge>=88', 'firefox>=78', 'safari>=14'],
             node: ['node>=22.6'],
             ...options?.target
-        }
+        },
+        css: options?.css ? options.css : gez.isProd ? 'css' : 'js'
     };
     return createRspackApp(gez, {
         ...options,

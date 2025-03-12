@@ -56,8 +56,8 @@
         "target": "e73bd21de180200b1b61e010f438e528614d400da0972c6e134c5399ca433d09"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "40d4af177f3fc2bda4293df96c49f99a67e91155facb203ee25b80a8e4aff6b5"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "d2d1ee83d7cfe87c474ad83fb5117df2a42827cac78a5ddd481e0ac33ee75883"
     },
     "guide/frameworks/vue3.md": {
         "source": "1dc3102433647c988044f3cce92675d876e235fdc8829ebd1f5a203d20631161",
@@ -84,8 +84,8 @@
         "target": "d89225d893bf517670dcf60afe47e1ed388a86922a96f41c81ad92888fc6b64b"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "980ec855b8e6186115ee69f75ef98ac7b776a584825f97fb5cf8f5598594fbe6"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "682555f93a46e6833012276e182c35b0b45301516e3e938c53ba7c9eed99e813"
     },
     "api/core/pack-config.md": {
         "source": "aad1d5eb4b9bc58cb0343f12e064ccf89a395dbc9d9898a4139257adc2f4c37e",

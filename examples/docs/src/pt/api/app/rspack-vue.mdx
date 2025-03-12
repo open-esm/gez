@@ -1,6 +1,6 @@
 ---
 titleSuffix: Ferramenta de construção Vue do framework Gez
-description: Ferramenta de construção especializada em Vue para o framework Gez, oferecendo suporte completo para construção de aplicativos Vue 2/3, incluindo desenvolvimento de componentes, renderização SSR e otimização de desempenho.
+description: Ferramenta de construção especializada em Vue para o framework Gez, oferecendo suporte completo para a construção de aplicativos Vue 2/3, incluindo desenvolvimento de componentes, renderização SSR e otimização de desempenho.
 head:
   - - meta
     - property: keywords
@@ -27,10 +27,10 @@ Instale a dependência de desenvolvimento `@gez/rspack-vue` usando um gerenciado
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Tipo de ambiente de construção, define o ambiente de destino para a construção do aplicativo, usado para configurar otimizações e funcionalidades específicas durante o processo de construção:
-- `node`: Constrói código para execução em ambiente Node.js
-- `client`: Constrói código para execução em navegadores
-- `server`: Constrói código para execução em servidores
+Tipo de ambiente de destino da construção, define o ambiente de destino da aplicação, usado para configurar otimizações e funcionalidades específicas durante o processo de construção:
+- `node`: Constrói código para ser executado em ambiente Node.js
+- `client`: Constrói código para ser executado em ambiente de navegador
+- `server`: Constrói código para ser executado em ambiente de servidor
 
 ### RspackAppConfigContext
 
@@ -43,9 +43,9 @@ interface RspackAppConfigContext {
 }
 ```
 
-Interface de contexto de configuração do aplicativo Rspack, fornece informações de contexto que podem ser acessadas em funções de hook de configuração:
+Interface de contexto de configuração do aplicativo Rspack, fornece informações de contexto que podem ser acessadas em funções de gancho de configuração:
 - `gez`: Instância do framework Gez
-- `buildTarget`: Ambiente de construção atual (client/server/node)
+- `buildTarget`: Destino de construção atual (client/server/node)
 - `config`: Objeto de configuração do Rspack
 - `options`: Opções de configuração do aplicativo
 
@@ -53,7 +53,7 @@ Interface de contexto de configuração do aplicativo Rspack, fornece informaç�
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,13 +69,13 @@ interface RspackAppOptions {
 ```
 
 Interface de opções de configuração do aplicativo Rspack:
-- `css`: Método de saída do CSS, opções 'css' (arquivo separado) ou 'style' (estilos inline)
+- `css`: Método de saída do CSS, opções 'css' (arquivo separado) ou 'js' (empacotado no JS), seleção automática padrão com base no ambiente: ambiente de produção usa 'css' para otimizar cache e carregamento paralelo, ambiente de desenvolvimento usa 'js' para suportar atualização em tempo real (HMR)
 - `loaders`: Configuração personalizada de loaders
 - `styleLoader`: Opções de configuração do style-loader
 - `cssLoader`: Opções de configuração do css-loader
-- `target`: Configuração de compatibilidade do ambiente de construção
+- `target`: Configuração de compatibilidade do destino de construção
 - `definePlugin`: Definição de constantes globais
-- `config`: Função de hook de configuração
+- `config`: Função de gancho de configuração
 
 ### RspackHtmlAppOptions
 
@@ -128,12 +128,12 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-Objeto de mapeamento de identificadores de loaders internos do Rspack, fornecendo constantes de nomes de loaders comumente usados:
+Objeto de mapeamento de identificadores de loaders internos do Rspack, fornece constantes de nomes de loaders comumente usados:
 
-- `builtinSwcLoader`: Loader SWC interno do Rspack, usado para processar arquivos TypeScript/JavaScript
-- `lightningcssLoader`: Loader lightningcss interno do Rspack, usado para processar arquivos CSS com compilação de alto desempenho
+- `builtinSwcLoader`: SWC loader interno do Rspack, usado para processar arquivos TypeScript/JavaScript
+- `lightningcssLoader`: Lightningcss loader interno do Rspack, usado para processar arquivos CSS com compilador de alto desempenho
 - `styleLoader`: Loader usado para injetar CSS no DOM
-- `cssLoader`: Loader usado para analisar arquivos CSS e lidar com modularização de CSS
+- `cssLoader`: Loader usado para analisar arquivos CSS e processar modularização CSS
 - `lessLoader`: Loader usado para compilar arquivos Less em CSS
 - `styleResourcesLoader`: Loader usado para importar automaticamente recursos de estilo globais (como variáveis, mixins)
 - `workerRspackLoader`: Loader usado para processar arquivos Web Worker
@@ -160,9 +160,9 @@ export default {
 ```
 
 **Observações:**
-- Esses loaders já estão embutidos no Rspack, não sendo necessário instalá-los separadamente
+- Esses loaders já estão embutidos no Rspack, não sendo necessário instalação adicional
 - Ao configurar loaders personalizados, essas constantes podem ser usadas para substituir a implementação padrão do loader
-- Alguns loaders (como `builtinSwcLoader`) possuem opções de configuração específicas, consulte a documentação correspondente
+- Alguns loaders (como `builtinSwcLoader`) têm opções de configuração específicas, consulte a documentação de configuração correspondente
 
 ## Exportação de módulos
 

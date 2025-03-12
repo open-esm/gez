@@ -52,8 +52,8 @@
         "target": "42e5d9102452d7c979c910ee952806fba65a59ffd929995a3325e1c3dd39d6ff"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "e4e7d0d48c8df1a4241e7cc5681d0df0df93b8015ce18be9c63856d3399b6fd0"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "c69baae03cbf7c24c9222704f79b076227438e69d07e7f6fa38ed20411d2d2ef"
     },
     "guide/frameworks/preact-htm.md": {
         "source": "1e7a130ce7b7ff61935448a3c45ba1de9d0c5687f1448ab92099bf60604d6287",
@@ -80,8 +80,8 @@
         "target": "176663ec8c8b5c79553333114fddf713058e65ebb25fe748c9c7e4b3a0cc5822"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "a7e47cd624337790585a17463b580adc074d887b3eeaa58fe7b8cca3e2ddc6ec"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "462ae16d484f9e633db91459405e6c19e92e0d1bf5a57e64533856f96b96cb66"
     },
     "api/core/gez.md": {
         "source": "b8e863f42b65930cce68ab96f2d32a93a75afa72446cad4ce07fb97559a45795",

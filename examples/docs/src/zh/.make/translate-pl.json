@@ -48,8 +48,8 @@
         "target": "24b2e45cb95cb68bdd8e754ef6602a2099c261115ab979716ca7cb0d192fd422"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "f52789bf306616cded4dfe5358984cb7f16cccc65de413aae07bdb50f275c48a"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "441376e8beacf67caf14a16fa0ed97f68f2bf928a1b6ca6b4df0758070a40340"
     },
     "api/core/module-config.md": {
         "source": "91cfd81dfc96b97cf5de01ecc1a744210f74340884fb6e6de59c7a94272250f7",
@@ -76,8 +76,8 @@
         "target": "fc0de307c8e9c6535816ce4e8cc0cee58d15d539db2c22693d48fdb4fc437bbb"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "351dc41ff00b18f93b2242f93179285955256089a64f604dbbe37d330217f1a0"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "064217c0c9afeb3e2ec11e556d9cfa9493b3a8c2de4c1bc4c56e12f90f6e1f8f"
     },
     "guide/frameworks/preact-htm.md": {
         "source": "1e7a130ce7b7ff61935448a3c45ba1de9d0c5687f1448ab92099bf60604d6287",

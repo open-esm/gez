@@ -15,7 +15,7 @@ Pakiet Rspack dostarcza zestaw API do tworzenia i konfigurowania aplikacji Rspac
 
 ## Instalacja
 
-Zainstaluj `@gez/rspack` jako zależność deweloperską za pomocą menedżera pakietów:
+Zainstaluj zależność deweloperską `@gez/rspack` za pomocą menedżera pakietów:
 
 <PackageManagerTabs command="install @gez/rspack -D" />
 
@@ -27,7 +27,7 @@ Zainstaluj `@gez/rspack` jako zależność deweloperską za pomocą menedżera p
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Typ środowiska docelowego budowania, definiujący środowisko docelowe aplikacji, używany do konfigurowania określonych optymalizacji i funkcji w procesie budowania:
+Typ środowiska docelowego budowania, definiujący środowisko docelowe aplikacji, używane do konfigurowania określonych optymalizacji i funkcji w procesie budowania:
 - `node`: Budowanie kodu do uruchomienia w środowisku Node.js
 - `client`: Budowanie kodu do uruchomienia w środowisku przeglądarki
 - `server`: Budowanie kodu do uruchomienia w środowisku serwerowym
@@ -53,7 +53,7 @@ Interfejs kontekstu konfiguracji aplikacji Rspack, dostarczający informacji kon
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,17 +69,17 @@ interface RspackAppOptions {
 ```
 
 Interfejs opcji konfiguracji aplikacji Rspack:
-- `css`: Sposób wyjścia CSS, możliwe opcje 'css' (osobny plik) lub 'style' (style inline)
+- `css`: Sposób wyjścia CSS, opcjonalnie 'css' (osobny plik) lub 'js' (wbudowany w JS), domyślnie wybierany automatycznie w zależności od środowiska: środowisko produkcyjne używa 'css' w celu optymalizacji pamięci podręcznej i równoległego ładowania, środowisko deweloperskie używa 'js' w celu wsparcia Hot Module Replacement (HMR)
 - `loaders`: Niestandardowa konfiguracja loaderów
 - `styleLoader`: Opcje konfiguracji style-loader
 - `cssLoader`: Opcje konfiguracji css-loader
 - `target`: Konfiguracja kompatybilności celu budowania
-- `definePlugin`: Definicje stałych globalnych
+- `definePlugin`: Definicje globalnych stałych
 - `config`: Funkcja hooka konfiguracyjnego
 
 ### RspackHtmlAppOptions
 
-Dziedziczy po `RspackAppOptions`, używany do konfigurowania specyficznych opcji aplikacji HTML.
+Dziedziczy po `RspackAppOptions`, używane do konfigurowania specyficznych opcji aplikacji HTML.
 
 ## Eksportowane Funkcje
 
@@ -131,7 +131,7 @@ const RSPACK_LOADER: Record<string, string> = {
 Obiekt mapujący wbudowane identyfikatory loaderów Rspack, dostarczający stałe nazwy często używanych loaderów:
 
 - `builtinSwcLoader`: Wbudowany loader SWC w Rspack, używany do przetwarzania plików TypeScript/JavaScript
-- `lightningcssLoader`: Wbudowany loader lightningcss w Rspack, używany do wysokowydajnej kompilacji plików CSS
+- `lightningcssLoader`: Wbudowany loader lightningcss w Rspack, używany do przetwarzania plików CSS z wysoką wydajnością
 - `styleLoader`: Loader używany do wstrzykiwania CSS do DOM
 - `cssLoader`: Loader używany do parsowania plików CSS i obsługi modułów CSS
 - `lessLoader`: Loader używany do kompilacji plików Less do CSS
@@ -161,8 +161,8 @@ export default {
 
 **Uwagi:**
 - Te loadery są już wbudowane w Rspack, nie wymagają dodatkowej instalacji
-- Podczas niestandardowej konfiguracji loaderów można użyć tych stałych, aby zastąpić domyślne implementacje loaderów
-- Niektóre loadery (np. `builtinSwcLoader`) mają specyficzne opcje konfiguracji, należy zapoznać się z odpowiednią dokumentacją konfiguracyjną
+- Podczas niestandardowej konfiguracji loaderów można użyć tych stałych do zastąpienia domyślnych implementacji loaderów
+- Niektóre loadery (np. `builtinSwcLoader`) mają specyficzne opcje konfiguracji, proszę zapoznać się z odpowiednią dokumentacją konfiguracyjną
 
 ## Eksportowane Moduły
 

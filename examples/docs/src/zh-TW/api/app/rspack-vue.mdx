@@ -53,7 +53,7 @@ Rspack 應用程式設定上下文介面，提供了在設定鉤子函數中可�
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,7 +69,7 @@ interface RspackAppOptions {
 ```
 
 Rspack 應用程式設定選項介面：
-- `css`: CSS 輸出方式，可選 'css'（獨立檔案）或 'style'（內嵌樣式）
+- `css`: CSS 輸出方式，可選 'css'（獨立檔案）或 'js'（打包到 JS 中），預設根據環境自動選擇：生產環境使用 'css' 以最佳化快取和並行載入，開發環境使用 'js' 以支援熱更新 (HMR)
 - `loaders`: 自訂 loader 設定
 - `styleLoader`: style-loader 設定選項
 - `cssLoader`: css-loader 設定選項
@@ -128,7 +128,7 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-Rspack 內建的 loader 識別符號映射物件，提供了常用的 loader 名稱常數：
+Rspack 內建的 loader 識別符映射物件，提供了常用的 loader 名稱常數：
 
 - `builtinSwcLoader`: Rspack 內建的 SWC loader，用於處理 TypeScript/JavaScript 檔案
 - `lightningcssLoader`: Rspack 內建的 lightningcss loader，用於處理 CSS 檔案的高效能編譯器

@@ -15,7 +15,7 @@ Gói Rspack cung cấp một bộ API để tạo và cấu hình ứng dụng R
 
 ## Cài đặt
 
-Sử dụng trình quản lý gói để cài đặt phụ thuộc phát triển `@gez/rspack`:
+Sử dụng trình quản lý gói để cài đặt `@gez/rspack` làm phụ thuộc phát triển:
 
 <PackageManagerTabs command="install @gez/rspack -D" />
 
@@ -44,7 +44,7 @@ interface RspackAppConfigContext {
 ```
 
 Giao diện ngữ cảnh cấu hình ứng dụng Rspack, cung cấp thông tin ngữ cảnh có thể truy cập trong các hàm hook cấu hình:
-- `gez`: Phiên bản Gez Framework
+- `gez`: Thể hiện của Gez Framework
 - `buildTarget`: Mục tiêu xây dựng hiện tại (client/server/node)
 - `config`: Đối tượng cấu hình Rspack
 - `options`: Tùy chọn cấu hình ứng dụng
@@ -53,7 +53,7 @@ Giao diện ngữ cảnh cấu hình ứng dụng Rspack, cung cấp thông tin 
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,7 +69,7 @@ interface RspackAppOptions {
 ```
 
 Giao diện tùy chọn cấu hình ứng dụng Rspack:
-- `css`: Cách xuất CSS, có thể chọn 'css' (tệp độc lập) hoặc 'style' (kiểu nội tuyến)
+- `css`: Cách xuất CSS, có thể chọn 'css' (tệp độc lập) hoặc 'js' (đóng gói vào JS), mặc định được chọn tự động dựa trên môi trường: môi trường sản xuất sử dụng 'css' để tối ưu hóa bộ nhớ đệm và tải song song, môi trường phát triển sử dụng 'js' để hỗ trợ cập nhật nóng (HMR)
 - `loaders`: Cấu hình loader tùy chỉnh
 - `styleLoader`: Tùy chọn cấu hình style-loader
 - `cssLoader`: Tùy chọn cấu hình css-loader
@@ -89,14 +89,14 @@ Kế thừa từ `RspackAppOptions`, được sử dụng để cấu hình các
 function createRspackApp(gez: Gez, options?: RspackAppOptions): Promise<App>
 ```
 
-Tạo một phiên bản ứng dụng Rspack tiêu chuẩn.
+Tạo một thể hiện ứng dụng Rspack tiêu chuẩn.
 
 **Tham số:**
-- `gez`: Phiên bản Gez Framework
+- `gez`: Thể hiện của Gez Framework
 - `options`: Tùy chọn cấu hình ứng dụng Rspack
 
 **Giá trị trả về:**
-- Trả về một Promise, giải quyết thành phiên bản ứng dụng được tạo
+- Trả về một Promise, giải quyết thành thể hiện ứng dụng được tạo
 
 ### createRspackHtmlApp
 
@@ -104,14 +104,14 @@ Tạo một phiên bản ứng dụng Rspack tiêu chuẩn.
 function createRspackHtmlApp(gez: Gez, options?: RspackHtmlAppOptions): Promise<App>
 ```
 
-Tạo một phiên bản ứng dụng Rspack kiểu HTML.
+Tạo một thể hiện ứng dụng Rspack kiểu HTML.
 
 **Tham số:**
-- `gez`: Phiên bản Gez Framework
+- `gez`: Thể hiện của Gez Framework
 - `options`: Tùy chọn cấu hình ứng dụng HTML
 
 **Giá trị trả về:**
-- Trả về một Promise, giải quyết thành phiên bản ứng dụng HTML được tạo
+- Trả về một Promise, giải quyết thành thể hiện ứng dụng HTML được tạo
 
 ## Xuất hằng số
 ### RSPACK_LOADER
@@ -128,17 +128,17 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-Đối tượng ánh xạ định danh loader tích hợp trong Rspack, cung cấp các hằng số tên loader thông dụng:
+Đối tượng ánh xạ định danh loader tích hợp sẵn trong Rspack, cung cấp các hằng số tên loader thông dụng:
 
-- `builtinSwcLoader`: SWC loader tích hợp trong Rspack, được sử dụng để xử lý tệp TypeScript/JavaScript
-- `lightningcssLoader`: lightningcss loader tích hợp trong Rspack, được sử dụng để xử lý tệp CSS với trình biên dịch hiệu suất cao
+- `builtinSwcLoader`: SWC loader tích hợp sẵn trong Rspack, được sử dụng để xử lý tệp TypeScript/JavaScript
+- `lightningcssLoader`: lightningcss loader tích hợp sẵn trong Rspack, được sử dụng để xử lý tệp CSS với trình biên dịch hiệu suất cao
 - `styleLoader`: Loader được sử dụng để chèn CSS vào DOM
 - `cssLoader`: Loader được sử dụng để phân tích tệp CSS và xử lý mô-đun hóa CSS
 - `lessLoader`: Loader được sử dụng để biên dịch tệp Less thành CSS
 - `styleResourcesLoader`: Loader được sử dụng để tự động nhập tài nguyên kiểu toàn cục (như biến, mixins)
 - `workerRspackLoader`: Loader được sử dụng để xử lý tệp Web Worker
 
-Sử dụng các hằng số này để tham chiếu các loader tích hợp trong cấu hình, tránh nhập chuỗi thủ công:
+Sử dụng các hằng số này để tham chiếu đến các loader tích hợp sẵn trong cấu hình, tránh nhập chuỗi thủ công:
 
 ```ts title="src/entry.node.ts"
 import { RSPACK_LOADER } from '@gez/rspack';

@@ -1,10 +1,10 @@
 ---
 titleSuffix: Công cụ xây dựng Vue của Gez Framework
-description: Công cụ xây dựng chuyên dụng cho Vue của Gez Framework, cung cấp hỗ trợ xây dựng ứng dụng Vue 2/3 đầy đủ, bao gồm phát triển component, kết xuất SSR và tối ưu hiệu suất.
+description: Công cụ xây dựng chuyên dụng cho Vue của Gez Framework, cung cấp hỗ trợ xây dựng ứng dụng Vue 2/3 đầy đủ, bao gồm phát triển component, kết xuất SSR và tối ưu hiệu năng.
 head:
   - - meta
     - property: keywords
-      content: Gez, Rspack, Vue, Vue2, Vue3, SSR, công cụ xây dựng, phát triển component, kết xuất phía máy chủ, tối ưu hiệu suất
+      content: Gez, Rspack, Vue, Vue2, Vue3, SSR, công cụ xây dựng, phát triển component, kết xuất phía máy chủ, tối ưu hiệu năng
 ---
 
 import { PackageManagerTabs } from '@theme';
@@ -19,7 +19,7 @@ Sử dụng trình quản lý gói để cài đặt `@gez/rspack-vue` như mộ
 
 <PackageManagerTabs command="install @gez/rspack-vue -D" />
 
-## Xuất kiểu
+## Xuất kiểu dữ liệu
 
 ### BuildTarget
 
@@ -27,7 +27,7 @@ Sử dụng trình quản lý gói để cài đặt `@gez/rspack-vue` như mộ
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Kiểu môi trường đích xây dựng, định nghĩa môi trường đích xây dựng của ứng dụng, được sử dụng để cấu hình các tối ưu hóa và chức năng cụ thể trong quá trình xây dựng:
+Kiểu môi trường đích xây dựng, định nghĩa môi trường đích của ứng dụng, được sử dụng để cấu hình các tối ưu hóa và chức năng cụ thể trong quá trình xây dựng:
 - `node`: Xây dựng mã chạy trong môi trường Node.js
 - `client`: Xây dựng mã chạy trong môi trường trình duyệt
 - `server`: Xây dựng mã chạy trong môi trường máy chủ
@@ -53,7 +53,7 @@ Giao diện ngữ cảnh cấu hình ứng dụng Rspack, cung cấp thông tin 
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,7 +69,7 @@ interface RspackAppOptions {
 ```
 
 Giao diện tùy chọn cấu hình ứng dụng Rspack:
-- `css`: Cách thức xuất CSS, có thể chọn 'css' (tệp độc lập) hoặc 'style' (style nội tuyến)
+- `css`: Cách thức xuất CSS, có thể chọn 'css' (tệp độc lập) hoặc 'js' (đóng gói vào JS), mặc định được chọn tự động dựa trên môi trường: môi trường sản xuất sử dụng 'css' để tối ưu hóa bộ nhớ đệm và tải song song, môi trường phát triển sử dụng 'js' để hỗ trợ cập nhật nóng (HMR)
 - `loaders`: Cấu hình loader tùy chỉnh
 - `styleLoader`: Tùy chọn cấu hình style-loader
 - `cssLoader`: Tùy chọn cấu hình css-loader
@@ -128,17 +128,17 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-Đối tượng ánh xạ định danh loader tích hợp của Rspack, cung cấp các hằng số tên loader thông dụng:
+Đối tượng ánh xạ định danh loader tích hợp sẵn trong Rspack, cung cấp các hằng số tên loader thông dụng:
 
-- `builtinSwcLoader`: SWC loader tích hợp của Rspack, được sử dụng để xử lý tệp TypeScript/JavaScript
-- `lightningcssLoader`: lightningcss loader tích hợp của Rspack, được sử dụng để xử lý tệp CSS với trình biên dịch hiệu suất cao
+- `builtinSwcLoader`: SWC loader tích hợp sẵn trong Rspack, được sử dụng để xử lý tệp TypeScript/JavaScript
+- `lightningcssLoader`: lightningcss loader tích hợp sẵn trong Rspack, được sử dụng để xử lý tệp CSS với trình biên dịch hiệu suất cao
 - `styleLoader`: Loader được sử dụng để chèn CSS vào DOM
-- `cssLoader`: Loader được sử dụng để phân tích tệp CSS và xử lý module hóa CSS
+- `cssLoader`: Loader được sử dụng để phân tích tệp CSS và xử lý mô-đun hóa CSS
 - `lessLoader`: Loader được sử dụng để biên dịch tệp Less thành CSS
-- `styleResourcesLoader`: Loader được sử dụng để tự động nhập tài nguyên style toàn cục (như biến, mixins)
+- `styleResourcesLoader`: Loader được sử dụng để tự động nhập tài nguyên kiểu toàn cục (như biến, mixins)
 - `workerRspackLoader`: Loader được sử dụng để xử lý tệp Web Worker
 
-Sử dụng các hằng số này có thể tham chiếu đến các loader tích hợp trong cấu hình, tránh việc nhập chuỗi thủ công:
+Sử dụng các hằng số này để tham chiếu đến các loader tích hợp sẵn trong cấu hình, tránh nhập chuỗi thủ công:
 
 ```ts title="src/entry.node.ts"
 import { RSPACK_LOADER } from '@gez/rspack';
@@ -164,7 +164,7 @@ export default {
 - Khi cấu hình loader tùy chỉnh, có thể sử dụng các hằng số này để thay thế triển khai loader mặc định
 - Một số loader (như `builtinSwcLoader`) có các tùy chọn cấu hình cụ thể, vui lòng tham khảo tài liệu cấu hình tương ứng
 
-## Xuất module
+## Xuất mô-đun
 
 ### rspack
 

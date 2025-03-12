@@ -24,16 +24,16 @@
         "target": "fa25a80111e82c167ab9eb6a0da2320fc9d83fdddb904f0dda97944ab26086c9"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "aa326896eb97c9d7782370ff30ac88d438994f0a03d3628fa877475da3a7fc21"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "0017ad368ec656ba9db023069549b938b5f11917d2f35c7ee26d659ead89800c"
     },
     "index.md": {
         "source": "821a0e1d38b437067f7129fd6140969b70074cfc2780db6db6484b2a139dbf41",
         "target": "1c9b54c08a7157467954001bce4312ea9db7c2eeb55bb9855855614683915396"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "6eeb46350c7359e3fad88ad5bd2fbb56f1cbdbd1337de41518278ddc9b21dc01"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "d6144cbe45e9aab1d525b033d5917b2ba62a7d139f3b93f17ebbe370eb43d4cb"
     },
     "guide/start/getting-started.mdx": {
         "source": "f035f5bbf98118c3b062a93f160200d80fd86f5244ce13e24e39518e623d89d5",

@@ -1,6 +1,6 @@
 ---
-titleSuffix: Gez Framework Rspack Build Tool
-description: La herramienta de construcción Rspack del framework Gez ofrece capacidades de construcción de aplicaciones de alto rendimiento, soportando el desarrollo y construcción de aplicaciones estándar y aplicaciones HTML, con múltiples procesadores de recursos y configuraciones de optimización integradas.
+titleSuffix: Herramienta de construcción Rspack del marco Gez
+description: La herramienta de construcción Rspack del marco Gez proporciona capacidades de construcción de aplicaciones de alto rendimiento, soporta el desarrollo y construcción de aplicaciones estándar y aplicaciones HTML, e incluye varios procesadores de recursos y configuraciones de optimización integrados.
 head:
   - - meta
     - property: keywords
@@ -15,11 +15,11 @@ El paquete Rspack proporciona un conjunto de API para crear y configurar aplicac
 
 ## Instalación
 
-Instala `@gez/rspack` como dependencia de desarrollo utilizando un gestor de paquetes:
+Instale `@gez/rspack` como dependencia de desarrollo utilizando un gestor de paquetes:
 
 <PackageManagerTabs command="install @gez/rspack -D" />
 
-## Exportación de Tipos
+## Exportación de tipos
 
 ### BuildTarget
 
@@ -27,7 +27,7 @@ Instala `@gez/rspack` como dependencia de desarrollo utilizando un gestor de paq
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Tipo de entorno de construcción, define el entorno objetivo de la aplicación, utilizado para configurar optimizaciones y funcionalidades específicas durante el proceso de construcción:
+Tipo de entorno de destino de construcción, define el entorno de destino de la aplicación, utilizado para configurar optimizaciones y funciones específicas durante el proceso de construcción:
 - `node`: Construye código para ejecutarse en un entorno Node.js
 - `client`: Construye código para ejecutarse en un entorno de navegador
 - `server`: Construye código para ejecutarse en un entorno de servidor
@@ -43,17 +43,17 @@ interface RspackAppConfigContext {
 }
 ```
 
-Interfaz de contexto de configuración de aplicación Rspack, proporciona información de contexto accesible en las funciones de enlace de configuración:
-- `gez`: Instancia del framework Gez
+Interfaz de contexto de configuración de la aplicación Rspack, proporciona información de contexto accesible en las funciones de enlace de configuración:
+- `gez`: Instancia del marco Gez
 - `buildTarget`: Objetivo de construcción actual (client/server/node)
-- `config`: Objeto de configuración Rspack
+- `config`: Objeto de configuración de Rspack
 - `options`: Opciones de configuración de la aplicación
 
 ### RspackAppOptions
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -68,8 +68,8 @@ interface RspackAppOptions {
 }
 ```
 
-Interfaz de opciones de configuración de aplicación Rspack:
-- `css`: Método de salida CSS, opciones 'css' (archivo independiente) o 'style' (estilos en línea)
+Interfaz de opciones de configuración de la aplicación Rspack:
+- `css`: Método de salida de CSS, opciones 'css' (archivo independiente) o 'js' (empaquetado en JS), selección automática según el entorno por defecto: entorno de producción usa 'css' para optimizar la caché y la carga paralela, entorno de desarrollo usa 'js' para soportar la actualización en caliente (HMR)
 - `loaders`: Configuración personalizada de loaders
 - `styleLoader`: Opciones de configuración de style-loader
 - `cssLoader`: Opciones de configuración de css-loader
@@ -81,7 +81,7 @@ Interfaz de opciones de configuración de aplicación Rspack:
 
 Hereda de `RspackAppOptions`, utilizado para configurar opciones específicas de aplicaciones HTML.
 
-## Exportación de Funciones
+## Exportación de funciones
 
 ### createRspackApp
 
@@ -92,11 +92,11 @@ function createRspackApp(gez: Gez, options?: RspackAppOptions): Promise<App>
 Crea una instancia de aplicación Rspack estándar.
 
 **Parámetros:**
-- `gez`: Instancia del framework Gez
-- `options`: Opciones de configuración de aplicación Rspack
+- `gez`: Instancia del marco Gez
+- `options`: Opciones de configuración de la aplicación Rspack
 
 **Valor de retorno:**
-- Devuelve una Promise que se resuelve en la instancia de aplicación creada
+- Devuelve una Promise que se resuelve en la instancia de la aplicación creada
 
 ### createRspackHtmlApp
 
@@ -107,13 +107,13 @@ function createRspackHtmlApp(gez: Gez, options?: RspackHtmlAppOptions): Promise<
 Crea una instancia de aplicación Rspack de tipo HTML.
 
 **Parámetros:**
-- `gez`: Instancia del framework Gez
-- `options`: Opciones de configuración de aplicación HTML
+- `gez`: Instancia del marco Gez
+- `options`: Opciones de configuración de la aplicación HTML
 
 **Valor de retorno:**
-- Devuelve una Promise que se resuelve en la instancia de aplicación HTML creada
+- Devuelve una Promise que se resuelve en la instancia de la aplicación HTML creada
 
-## Exportación de Constantes
+## Exportación de constantes
 ### RSPACK_LOADER
 
 ```ts
@@ -138,7 +138,7 @@ Objeto de mapeo de identificadores de loaders integrados en Rspack, proporciona 
 - `styleResourcesLoader`: Loader utilizado para importar automáticamente recursos de estilo globales (como variables, mixins)
 - `workerRspackLoader`: Loader utilizado para procesar archivos de Web Worker
 
-Utilizar estas constantes permite referenciar loaders integrados en la configuración, evitando la entrada manual de cadenas:
+Usar estas constantes permite referenciar loaders integrados en la configuración, evitando la entrada manual de cadenas:
 
 ```ts title="src/entry.node.ts"
 import { RSPACK_LOADER } from '@gez/rspack';
@@ -162,9 +162,9 @@ export default {
 **Notas:**
 - Estos loaders ya están integrados en Rspack, no es necesario instalarlos adicionalmente
 - Al configurar loaders personalizados, se pueden usar estas constantes para reemplazar la implementación predeterminada del loader
-- Algunos loaders (como `builtinSwcLoader`) tienen opciones de configuración específicas, consulta la documentación correspondiente
+- Algunos loaders (como `builtinSwcLoader`) tienen opciones de configuración específicas, consulte la documentación de configuración correspondiente
 
-## Exportación de Módulos
+## Exportación de módulos
 
 ### rspack
 

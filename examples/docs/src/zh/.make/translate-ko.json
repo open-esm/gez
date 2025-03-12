@@ -48,8 +48,8 @@
         "target": "7f2cb5335d32889ccea65dd8739f8bbefa03ef50535dfd718197b0444b7803c6"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "2fc86332ae90ad00b30880a75b1ee8f87725b980b355b739f84f56287183e016"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "2595cb80ca4e434af4066570e2b4aae880e9f2c3e2b568ce9c83ecfdaaebff8d"
     },
     "guide/essentials/render-context.md": {
         "source": "dcadc48313b8a33f6fa0484dcacd13f994d0e9bbea50b384c47529ba715c2a4c",
@@ -88,8 +88,8 @@
         "target": "fd683b48f58086885afa8c7d25604a621f35714286293c7256a353afb8457eea"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "d50c2e1d1c5f0dd7e2bcf2fa2e8fd0eb6c9bc0fefa856f36d4a92475734afd86"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "0c5841848e8c42adb08b56d7b049f0241bd1523edcf8d2b18e8fe6fa510e679d"
     },
     "blog/birth-of-gez.md": {
         "source": "eae5d43c8b86538e167d6b5dabddc87052996c074ac6e9b87e95a7d5f2383209",

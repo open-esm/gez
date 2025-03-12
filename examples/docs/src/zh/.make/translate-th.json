@@ -64,8 +64,8 @@
         "target": "43aa54cf888e5561fde886eefdc84fb4a3b93e977fdec8dae9c59a2fbc6f6405"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "c66f65a5815386663ebfab5bc64c592371ff85cb59ab3f537e74617cab0c71e1"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "7d36960ec2fd52762dba5438a94c6ddd229c88858fba83e2ed6e4167d83a76d3"
     },
     "guide/essentials/std.md": {
         "source": "c1ce3d5ad2abaefad4d377141421babfa9e7145028df621b773a8887b4691e35",
@@ -88,8 +88,8 @@
         "target": "e2e835bee24b85ed37ce0d0301ae67926bd8d9f51408f30f78bb575af86cdd14"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "1b1b4f0cebcdbd1536c72245dd84c2c0b5c72b85a3b560c73a379ad0dc218b3b"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "1e70d5b7ce5eef00831cde52e1fe33ec04f1db95dfb3f6e607f98393d4d8d242"
     },
     "guide/frameworks/vue3.md": {
         "source": "1dc3102433647c988044f3cce92675d876e235fdc8829ebd1f5a203d20631161",

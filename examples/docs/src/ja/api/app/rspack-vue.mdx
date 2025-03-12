@@ -15,7 +15,7 @@ Rspack Vue パッケージは、Vue フレームワークに基づく Rspack ア
 
 ## インストール
 
-パッケージマネージャを使用して `@gez/rspack-vue` 開発依存関係をインストールします：
+パッケージマネージャーを使用して `@gez/rspack-vue` 開発依存関係をインストールします：
 
 <PackageManagerTabs command="install @gez/rspack-vue -D" />
 
@@ -53,7 +53,7 @@ Rspack アプリケーション設定コンテキストインターフェース�
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,7 +69,7 @@ interface RspackAppOptions {
 ```
 
 Rspack アプリケーション設定オプションインターフェース：
-- `css`: CSS 出力方式で、'css'（独立ファイル）または 'style'（インラインスタイル）を選択可能
+- `css`: CSS 出力方式で、'css'（独立ファイル）または 'js'（JS にバンドル）を選択可能。デフォルトでは環境に基づいて自動選択されます：本番環境ではキャッシュと並列読み込みを最適化するために 'css' を使用し、開発環境ではホットリロード（HMR）をサポートするために 'js' を使用します
 - `loaders`: カスタム loader 設定
 - `styleLoader`: style-loader 設定オプション
 - `cssLoader`: css-loader 設定オプション
@@ -128,7 +128,7 @@ const RSPACK_LOADER: Record<string, string> = {
 }
 ```
 
-Rspack に組み込まれた loader 識別子のマッピングオブジェクトで、一般的に使用される loader 名の定数を提供します：
+Rspack に組み込まれた loader 識別子マッピングオブジェクトで、一般的に使用される loader 名の定数を提供します：
 
 - `builtinSwcLoader`: Rspack に組み込まれた SWC loader で、TypeScript/JavaScript ファイルを処理します
 - `lightningcssLoader`: Rspack に組み込まれた lightningcss loader で、CSS ファイルの高性能コンパイラを処理します
@@ -162,10 +162,10 @@ export default {
 **注意事項：**
 - これらの loader は Rspack に組み込まれており、追加のインストールは不要です
 - カスタム loader 設定では、これらの定数を使用してデフォルトの loader 実装を置き換えることができます
-- 一部の loader（例：`builtinSwcLoader`）には特定の設定オプションがあります。関連する設定ドキュメントを参照してください
+- 一部の loader（例：`builtinSwcLoader`）には特定の設定オプションがあります。適切な設定ドキュメントを参照してください
 
 ## モジュールエクスポート
 
 ### rspack
 
-`@rspack/core` パッケージのすべての内容を再エクスポートし、Rspack のコア機能を完全に提供します。
+`@rspack/core` パッケージのすべての内容を再エクスポートし、完全な Rspack コア機能を提供します。

@@ -76,8 +76,8 @@
         "target": "aeb940d8d28b93e0abb2ad2509378992a38e37c2d3c35bd149cf11ec5ccf5142"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "57530408f40c754843bec5bc90751a9ba2096e8e7e9d90401450b696459937c0"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "fff810c0f905b5031f273fb0d6a286a073413d584553f4d1d30c1cc2fb78456c"
     },
     "api/core/gez.md": {
         "source": "b8e863f42b65930cce68ab96f2d32a93a75afa72446cad4ce07fb97559a45795",
@@ -96,7 +96,7 @@
         "target": "7eac6464f41b64cd1f45fed7aaf288be4cc8a96f6fb19cb064562e25b107b4e1"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "b4bab4154714cabaac2560defb080a3429a065c7e4234429ba91220e4fce1d1b"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "7d9449af3d4f64ebe714bcee3321085fee26d6298f7de3960a9531f8653dc0e1"
     }
 }

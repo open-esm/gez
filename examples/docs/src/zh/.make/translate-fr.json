@@ -88,15 +88,15 @@
         "target": "e2a3ac843092990c7862c2774ed20c36f35e4331e1e8aa4a4bcf3935382bc7ed"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "bfc8ed872005c7822b2e02f45f7dec54e7ca4969373cb55d8539c7d0a6cb6300"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "620c637e91d45c7c0279c8b1fd6aeef2082f86ffbb2cf0eee6a9698bca1b7607"
     },
     "api/core/gez.md": {
         "source": "b8e863f42b65930cce68ab96f2d32a93a75afa72446cad4ce07fb97559a45795",
         "target": "c678512acc62c0ca1510d41b2776bee61014c7b3a1ae61a29191870619c25e4f"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "4260a52478359d1fd62fa8740f3d1e76611aa9a8525779c776bbce0d93391382"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "d7fb40a5ca7f67e8860766cca7d093f446c80f2011e1b9918d7677608a0cab62"
     }
 }

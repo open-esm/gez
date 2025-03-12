@@ -53,7 +53,7 @@ Rspack 应用配置上下文接口，提供了在配置钩子函数中可以访�
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,7 +69,7 @@ interface RspackAppOptions {
 ```
 
 Rspack 应用配置选项接口：
-- `css`: CSS 输出方式，可选 'css'（独立文件）或 'style'（内联样式）
+- `css`: CSS 输出方式，可选 'css'（独立文件）或 'js'（打包到JS中），默认根据环境自动选择：生产环境使用'css'以优化缓存和并行加载，开发环境使用'js'以支持热更新(HMR)
 - `loaders`: 自定义 loader 配置
 - `styleLoader`: style-loader 配置选项
 - `cssLoader`: css-loader 配置选项

@@ -52,12 +52,12 @@
         "target": "796ceb182dd0d3316705f58c09fdcde59a1a6418cd46e18f7ff6947949f53268"
     },
     "api/app/rspack.mdx": {
-        "source": "e736d432e6e951adb7f66b6293495cbc123d7397596fb3fb89443d2462a85a2c",
-        "target": "877fd54503c10cf8e8bf13c6a6f4e1ac23a96d8ff3d058ca3270e9d75ff05f54"
+        "source": "e41453210699164743a2e66ee3329717b6e731d1cd6628473d1e3449f7c65643",
+        "target": "1ef0dd8a134aca4375012a6599396f4d724ddc0d26435e6d4ff9c68c79ac3336"
     },
     "api/app/rspack-vue.mdx": {
-        "source": "e7b53f18674cd5794086d75f7414948cf543f25e9d818664b7a3d59408540427",
-        "target": "94ccaf4dd4f7ad9bb32b55bb515ccdbb3bb793d48d4566e62863c114b5e6ec2f"
+        "source": "9164bf1fa749aeda9ed717b7e910d140c156b18b330de82d4c2739100a0c917b",
+        "target": "78d1f4673653dfa78a4a630442c44d6b245db12e79ccc5cdefed435d5c810a98"
     },
     "api/core/pack-config.md": {
         "source": "aad1d5eb4b9bc58cb0343f12e064ccf89a395dbc9d9898a4139257adc2f4c37e",

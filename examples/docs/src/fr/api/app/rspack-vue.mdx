@@ -15,7 +15,7 @@ Le package Rspack Vue fournit un ensemble d'API pour créer et configurer des ap
 
 ## Installation
 
-Installez `@gez/rspack-vue` en tant que dépendance de développement à l'aide d'un gestionnaire de paquets :
+Installez `@gez/rspack-vue` en tant que dépendance de développement à l'aide d'un gestionnaire de packages :
 
 <PackageManagerTabs command="install @gez/rspack-vue -D" />
 
@@ -27,7 +27,7 @@ Installez `@gez/rspack-vue` en tant que dépendance de développement à l'aide 
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-Type d'environnement cible de construction, définissant l'environnement cible de l'application pour configurer des optimisations et fonctionnalités spécifiques lors du processus de construction :
+Type d'environnement cible de construction, définissant l'environnement cible de construction de l'application, utilisé pour configurer des optimisations et fonctionnalités spécifiques lors du processus de construction :
 - `node` : Code exécuté dans un environnement Node.js
 - `client` : Code exécuté dans un environnement navigateur
 - `server` : Code exécuté dans un environnement serveur
@@ -53,7 +53,7 @@ Interface de contexte de configuration d'application Rspack, fournissant des inf
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,11 +69,11 @@ interface RspackAppOptions {
 ```
 
 Interface des options de configuration d'application Rspack :
-- `css` : Méthode de sortie CSS, option 'css' (fichier séparé) ou 'style' (style en ligne)
+- `css` : Méthode de sortie CSS, option 'css' (fichier séparé) ou 'js' (intégré dans JS), sélection automatique par défaut selon l'environnement : production utilise 'css' pour optimiser le cache et le chargement parallèle, développement utilise 'js' pour supporter la mise à jour à chaud (HMR)
 - `loaders` : Configuration personnalisée des loaders
 - `styleLoader` : Options de configuration de style-loader
 - `cssLoader` : Options de configuration de css-loader
-- `target` : Configuration de compatibilité des cibles de construction
+- `target` : Configuration de compatibilité de la cible de construction
 - `definePlugin` : Définition de constantes globales
 - `config` : Fonction de rappel de configuration
 
@@ -130,15 +130,15 @@ const RSPACK_LOADER: Record<string, string> = {
 
 Objet de mappage des identifiants de loaders intégrés à Rspack, fournissant des constantes de noms de loaders couramment utilisés :
 
-- `builtinSwcLoader` : Loader SWC intégré à Rspack, utilisé pour traiter les fichiers TypeScript/JavaScript
-- `lightningcssLoader` : Loader lightningcss intégré à Rspack, utilisé pour compiler les fichiers CSS avec des performances élevées
-- `styleLoader` : Loader utilisé pour injecter le CSS dans le DOM
+- `builtinSwcLoader` : SWC loader intégré à Rspack, utilisé pour traiter les fichiers TypeScript/JavaScript
+- `lightningcssLoader` : Lightningcss loader intégré à Rspack, utilisé pour compiler les fichiers CSS avec des performances élevées
+- `styleLoader` : Loader utilisé pour injecter CSS dans le DOM
 - `cssLoader` : Loader utilisé pour analyser les fichiers CSS et gérer la modularisation CSS
 - `lessLoader` : Loader utilisé pour compiler les fichiers Less en CSS
-- `styleResourcesLoader` : Loader utilisé pour importer automatiquement des ressources de style globales (comme des variables, des mixins)
+- `styleResourcesLoader` : Loader utilisé pour importer automatiquement des ressources de style globales (comme des variables, mixins)
 - `workerRspackLoader` : Loader utilisé pour traiter les fichiers Web Worker
 
-Utiliser ces constantes permet de référencer les loaders intégrés dans la configuration, évitant ainsi de saisir manuellement des chaînes de caractères :
+Utiliser ces constantes permet de référencer les loaders intégrés dans la configuration, évitant de saisir manuellement des chaînes de caractères :
 
 ```ts title="src/entry.node.ts"
 import { RSPACK_LOADER } from '@gez/rspack';

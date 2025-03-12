@@ -27,7 +27,7 @@ Install `@gez/rspack` as a development dependency using a package manager:
 type BuildTarget = 'node' | 'client' | 'server'
 ```
 
-The build target environment type defines the target environment for application building, used to configure specific optimizations and features during the build process:
+The build target environment type defines the target environment for the application build, used to configure specific optimizations and features during the build process:
 - `node`: Build code to run in a Node.js environment
 - `client`: Build code to run in a browser environment
 - `server`: Build code to run in a server environment
@@ -53,7 +53,7 @@ The Rspack application configuration context interface provides context informat
 
 ```ts
 interface RspackAppOptions {
-  css?: 'css' | 'style'
+  css?: 'css' | 'js' | false
   loaders?: {
     styleLoader?: string
   }
@@ -69,17 +69,17 @@ interface RspackAppOptions {
 ```
 
 Rspack application configuration options interface:
-- `css`: CSS output method, either 'css' (standalone file) or 'style' (inline styles)
+- `css`: CSS output method, either 'css' (separate file) or 'js' (bundled into JS), automatically selected based on environment: production uses 'css' for cache optimization and parallel loading, development uses 'js' to support hot module replacement (HMR)
 - `loaders`: Custom loader configurations
 - `styleLoader`: style-loader configuration options
 - `cssLoader`: css-loader configuration options
-- `target`: Build target compatibility configurations
+- `target`: Build target compatibility configuration
 - `definePlugin`: Global constant definitions
 - `config`: Configuration hook function
 
 ### RspackHtmlAppOptions
 
-Inherits from `RspackAppOptions`, used to configure specific options for HTML applications.
+Extends `RspackAppOptions`, used to configure specific options for HTML applications.
 
 ## Function Exports
 
@@ -96,7 +96,7 @@ Creates a standard Rspack application instance.
 - `options`: Rspack application configuration options
 
 **Returns:**
-- A Promise that resolves to the created application instance
+- Returns a Promise that resolves to the created application instance
 
 ### createRspackHtmlApp
 
@@ -111,7 +111,7 @@ Creates an HTML-type Rspack application instance.
 - `options`: HTML application configuration options
 
 **Returns:**
-- A Promise that resolves to the created HTML application instance
+- Returns a Promise that resolves to the created HTML application instance
 
 ## Constant Exports
 ### RSPACK_LOADER
@@ -131,7 +131,7 @@ const RSPACK_LOADER: Record<string, string> = {
 A mapping object of Rspack's built-in loader identifiers, providing commonly used loader name constants:
 
 - `builtinSwcLoader`: Rspack's built-in SWC loader for processing TypeScript/JavaScript files
-- `lightningcssLoader`: Rspack's built-in lightningcss loader for high-performance CSS file compilation
+- `lightningcssLoader`: Rspack's built-in lightningcss loader, a high-performance compiler for CSS files
 - `styleLoader`: Loader for injecting CSS into the DOM
 - `cssLoader`: Loader for parsing CSS files and handling CSS modularization
 - `lessLoader`: Loader for compiling Less files into CSS
@@ -162,7 +162,7 @@ export default {
 **Notes:**
 - These loaders are built into Rspack and do not require additional installation
 - When customizing loader configurations, these constants can be used to replace default loader implementations
-- Some loaders (e.g., `builtinSwcLoader`) have specific configuration options; refer to the respective documentation
+- Some loaders (e.g., `builtinSwcLoader`) have specific configuration options, refer to the respective documentation
 
 ## Module Exports
 
